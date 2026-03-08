@@ -69,6 +69,22 @@ const Dashboard = ({url}) => {
                 <p>Add new food items or update pricing instantly.</p>
               </div>
            </div>
+
+           <div className="dashboard-card" onClick={() => navigate('/list-customer')}>
+              <img src={assets.profile_image} alt="" style={{filter: 'invert(1)'}} />
+              <div>
+                <h3>Customers</h3>
+                <p>View, add, edit, or delete customer accounts.</p>
+              </div>
+           </div>
+
+           <div className="dashboard-card" onClick={() => navigate('/list-category')}>
+              <img src={assets.order_icon} alt="" />
+              <div>
+                <h3>Categories</h3>
+                <p>Manage the menu categories of your platform.</p>
+              </div>
+           </div>
         </div>
 
         <div className="dashboard-metrics">

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './PlaceOrder.css'
-import { StoreContext } from '../../Context/StoreContext'
+import { StoreContext } from '../../context/StoreContext'
 import { assets } from '../../assets/assets';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -79,6 +79,36 @@ const PlaceOrder = () => {
             navigate('/cart')
         }
     }, [token])
+
+    // Fetch user details for auto-fill when component mounts and token is ready
+    useEffect(() => {
+        const fetchUserData = async () => {
+            if (token) {
+                try {
+                    const response = await axios.get(url + "/api/user/profile", { headers: { token } });
+                    if (response.data.success) {
+                        const user = response.data.data;
+                        
+                        // Parse full name into first and last
+                        const nameParts = user.name ? user.name.split(" ") : ["", ""];
+                        const firstName = nameParts[0] || "";
+                        const lastName = nameParts.slice(1).join(" ") || ""; 
+
+                        setData(prevData => ({
+                            ...prevData,
+                            firstName: firstName,
+                            lastName: lastName,
+                            email: user.email || ""
+                        }));
+                    }
+                } catch (error) {
+                    console.error("Error fetching user data", error);
+                }
+            }
+        };
+
+        fetchUserData();
+    }, [token, url]);
 
     return (
         <form onSubmit={placeOrder} className='place-order'>
