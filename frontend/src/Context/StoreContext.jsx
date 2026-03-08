@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { food_list, menu_list } from "../assets/assets";
 import axios from "axios";
+import { toast } from "react-toastify";
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
@@ -87,6 +88,24 @@ const StoreContextProvider = (props) => {
     }
 
     useEffect(() => {
+        // Setup Global Axios Interceptor for deleted user checks
+        const interceptor = axios.interceptors.response.use(
+            response => {
+                // Check if the backend flagged this specific account as recently deleted
+                if (response.data && response.data.accountDeleted === true) {
+                    // Forcefully log them out locally
+                    localStorage.removeItem("token");
+                    setToken("");
+                    setCartItems({});
+                    toast.error(response.data.message || "Your account has been terminated.");
+                }
+                return response;
+            },
+            error => {
+                return Promise.reject(error);
+            }
+        );
+
         async function loadData() {
             await fetchFoodList();
             await fetchCategories();
@@ -98,6 +117,11 @@ const StoreContextProvider = (props) => {
             }
         }
         loadData()
+
+        // Cleanup interceptor on unmount
+        return () => {
+            axios.interceptors.response.eject(interceptor);
+        };
     }, [])
 
     const contextValue = {
