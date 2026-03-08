@@ -8,6 +8,12 @@ const Sidebar = () => {
     <div className='sidebar'>
       <div className="sidebar-options">
         
+        <p className="sidebar-group-title">General</p>
+        <NavLink to='/dashboard' className="sidebar-option">
+            <img src={assets.order_icon} alt="" />
+            <p>Dashboard</p>
+        </NavLink>
+
         <p className="sidebar-group-title">Menu Management</p>
         <NavLink to='/add' className="sidebar-option">
             <img src={assets.add_icon} alt="" />
@@ -42,6 +48,16 @@ const Sidebar = () => {
         <NavLink to='/orders' className="sidebar-option">
             <img src={assets.order_icon} alt="" />
             <p>Orders</p>
+        </NavLink>
+
+        <p className="sidebar-group-title">Customers</p>
+        <NavLink to='/add-customer' className="sidebar-option">
+            <img src={assets.add_icon} alt="" />
+            <p>Add Customer</p>
+        </NavLink>
+        <NavLink to='/list-customer' className="sidebar-option">
+            <img src={assets.order_icon} alt="" />
+            <p>List Customers</p>
         </NavLink>
 
       </div>

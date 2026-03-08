@@ -3,8 +3,11 @@ import './Login.css'
 import { assets } from '../../assets/assets'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 const Login = ({ url, setToken }) => {
+    
+    const navigate = useNavigate();
     
     const [data, setData] = useState({
         email: "",
@@ -26,6 +29,7 @@ const Login = ({ url, setToken }) => {
                 setToken(response.data.token)
                 localStorage.setItem("token", response.data.token)
                 toast.success("Login Successful")
+                navigate('/dashboard')
             } else {
                 toast.error(response.data.message)
             }

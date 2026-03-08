@@ -9,7 +9,11 @@ import AddCategory from './pages/Category/AddCategory'
 import ListCategory from './pages/Category/ListCategory'
 import AddBanner from './pages/Banner/AddBanner'
 import ListBanner from './pages/Banner/ListBanner'
+import AddCustomer from './pages/Customer/AddCustomer'
+import ListCustomer from './pages/Customer/ListCustomer'
+import Dashboard from './pages/Dashboard/Dashboard'
 import Login from './pages/Login/Login'
+import { Navigate } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -33,14 +37,18 @@ const App = () => {
           <div className="app-content">
         <Sidebar />
         <Routes>
+          <Route path="/dashboard" element={<Dashboard url={url} />} />
           <Route path="/add" element={<Add />} />
           <Route path="/list" element={<List />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/add-category" element={<AddCategory url={url}/>} />
           <Route path="/list-category" element={<ListCategory url={url}/>} />
           <Route path="/add-banner" element={<AddBanner url={url}/>} />
-              <Route path="/list-banner" element={<ListBanner url={url}/>} />
-            </Routes>
+          <Route path="/list-banner" element={<ListBanner url={url}/>} />
+          <Route path="/add-customer" element={<AddCustomer url={url}/>} />
+          <Route path="/list-customer" element={<ListCustomer url={url}/>} />
+          <Route path="*" element={<Navigate to="/dashboard" />} />
+        </Routes>
           </div>
         </>
       }

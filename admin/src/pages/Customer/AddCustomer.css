@@ -1,0 +1,51 @@
+.add-customer {
+    width: 70%;
+    margin-left: max(5vw, 25px);
+    margin-top: 50px;
+    color: #686868;
+    font-size: 16px;
+}
+
+.add-customer form {
+    gap: 20px;
+}
+
+.add-customer-title p {
+    font-size: 20px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.add-customer-name input,
+.add-customer-email input,
+.add-customer-password input {
+    width: max(40%, 280px);
+    padding: 10px;
+    border: 1px solid #c9c9c9;
+    border-radius: 4px;
+    outline-color: tomato;
+}
+
+.add-btn {
+    max-width: 150px;
+    border: none;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.add-btn:hover {
+    background-color: tomato;
+}
+
+@media (max-width: 800px) {
+    .add-customer {
+        width: 100%;
+        margin-left: max(1vw, 15px);
+        margin-top: 30px;
+    }
+}

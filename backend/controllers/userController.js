@@ -110,4 +110,66 @@ const adminLogin = async (req, res) => {
     }
 }
 
-export {loginUser, registerUser, getUserProfile, updateUserProfile, adminLogin}
+// admin: fetch all users
+const listUsers = async (req, res) => {
+    try {
+        const users = await userModel.find({}); // You might want to strip passwords in production: .select("-password")
+        res.json({success: true, data: users});
+    } catch (error) {
+        console.log(error);
+        res.json({success: false, message: "Error fetching users"});
+    }
+}
+
+// admin: add user manually
+const addUser = async (req, res) => {
+    const {name, email, password} = req.body;
+    try{
+        const exists = await userModel.findOne({email})
+        if(exists) { return res.json({success:false, message: "User already exists"}) }
+
+        if(!validator.isEmail(email)) { return res.json({success:false, message: "Please enter a valid email"}) }
+        if(password.length<8) { return res.json({success:false, message: "Please enter a strong password"}) }
+
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+
+        const newUser = new userModel({name, email, password: hashedPassword});
+        await newUser.save();
+        res.json({success:true, message: "Customer added successfully"});
+    } catch(error){
+        console.log(error);
+        res.json({success:false, message:"Error adding customer"});
+    }
+}
+
+// admin: remove user
+const removeUser = async (req, res) => {
+    try {
+        await userModel.findByIdAndDelete(req.body.id);
+        res.json({success: true, message: "Customer removed successfully"});
+    } catch (error) {
+        console.log(error);
+        res.json({success: false, message: "Error removing customer"});
+    }
+}
+
+// admin: update user (name and email)
+const updateUser = async (req, res) => {
+    try {
+        const { id, name, email } = req.body;
+        
+        // Simple validation
+        if(email && !validator.isEmail(email)){
+            return res.json({success:false, message: "Please enter a valid email"});
+        }
+
+        await userModel.findByIdAndUpdate(id, { name, email });
+        res.json({success: true, message: "Customer updated successfully"});
+    } catch (error) {
+        console.log(error);
+        res.json({success: false, message: "Error updating customer"});
+    }
+}
+
+export {loginUser, registerUser, getUserProfile, updateUserProfile, adminLogin, listUsers, addUser, removeUser, updateUser}
