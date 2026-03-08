@@ -93,4 +93,21 @@ const updateUserProfile = async (req, res) => {
     }
 }
 
-export {loginUser, registerUser, getUserProfile, updateUserProfile}
+// admin login
+const adminLogin = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        
+        if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
+            const token = jwt.sign({id: "admin"}, process.env.JWT_SECRET);
+            res.json({success: true, token});
+        } else {
+            res.json({success: false, message: "Invalid credentials"});
+        }
+    } catch (error) {
+        console.log(error);
+        res.json({success: false, message: "Error authenticating admin"});
+    }
+}
+
+export {loginUser, registerUser, getUserProfile, updateUserProfile, adminLogin}
