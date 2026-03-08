@@ -37,6 +37,10 @@
 .footer li{
     cursor: pointer;
 }
+.footer li a {
+    color: inherit;
+    text-decoration: none;
+}
 .footer hr{
     width: 100%;
     height: 2px;
