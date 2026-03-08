@@ -9,18 +9,28 @@ import AddCategory from './pages/Category/AddCategory'
 import ListCategory from './pages/Category/ListCategory'
 import AddBanner from './pages/Banner/AddBanner'
 import ListBanner from './pages/Banner/ListBanner'
+import Login from './pages/Login/Login'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   const url = "http://localhost:4000";
+  const [token, setToken] = React.useState("");
+
+  React.useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setToken(localStorage.getItem("token"));
+    }
+  }, [])
 
   return (
     <div className='app'>
       <ToastContainer />
-      <Navbar />
-      <hr />
-      <div className="app-content">
+      {token === "" ? <Login url={url} setToken={setToken} /> :
+        <>
+          <Navbar setToken={setToken} />
+          <hr />
+          <div className="app-content">
         <Sidebar />
         <Routes>
           <Route path="/add" element={<Add />} />
@@ -29,9 +39,11 @@ const App = () => {
           <Route path="/add-category" element={<AddCategory url={url}/>} />
           <Route path="/list-category" element={<ListCategory url={url}/>} />
           <Route path="/add-banner" element={<AddBanner url={url}/>} />
-          <Route path="/list-banner" element={<ListBanner url={url}/>} />
-        </Routes>
-      </div>
+              <Route path="/list-banner" element={<ListBanner url={url}/>} />
+            </Routes>
+          </div>
+        </>
+      }
     </div>
   )
 }
