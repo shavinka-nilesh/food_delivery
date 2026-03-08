@@ -11,6 +11,8 @@ import AddBanner from './pages/Banner/AddBanner'
 import ListBanner from './pages/Banner/ListBanner'
 import AddCustomer from './pages/Customer/AddCustomer'
 import ListCustomer from './pages/Customer/ListCustomer'
+import AdminProfile from './pages/Profile/AdminProfile'
+import SocialLinks from './pages/Social/SocialLinks'
 import Dashboard from './pages/Dashboard/Dashboard'
 import Login from './pages/Login/Login'
 import { Navigate } from 'react-router-dom'
@@ -32,7 +34,7 @@ const App = () => {
       <ToastContainer />
       {token === "" ? <Login url={url} setToken={setToken} /> :
         <>
-          <Navbar setToken={setToken} />
+          <Navbar setToken={setToken} url={url} />
           <hr />
           <div className="app-content">
         <Sidebar />
@@ -47,6 +49,8 @@ const App = () => {
           <Route path="/list-banner" element={<ListBanner url={url}/>} />
           <Route path="/add-customer" element={<AddCustomer url={url}/>} />
           <Route path="/list-customer" element={<ListCustomer url={url}/>} />
+          <Route path="/admin-profile" element={<AdminProfile url={url} setToken={setToken}/>} />
+          <Route path="/social-links" element={<SocialLinks url={url} />} />
           <Route path="*" element={<Navigate to="/dashboard" />} />
         </Routes>
           </div>

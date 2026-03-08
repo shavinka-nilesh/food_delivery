@@ -15,15 +15,62 @@
     align-items: center;
     gap: 20px;
 }
-.logout-btn {
-    border: 1px solid tomato;
-    padding: 8px 15px;
-    border-radius: 4px;
-    color: tomato;
-    background-color: transparent;
+.navbar-profile {
+    position: relative;
     cursor: pointer;
-    font-size: 14px;
 }
-.logout-btn:hover {
-    background-color: #fff0ed;
+
+.navbar-profile .profile {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    transition: 0.3s;
+}
+
+.navbar-profile:hover .profile {
+    border-color: tomato;
+}
+
+.nav-profile-dropdown {
+    position: absolute;
+    display: none;
+    right: 0;
+    z-index: 1;
+    background-color: #fff2ef;
+    border-radius: 8px;
+    border: 1px solid tomato;
+    gap: 10px;
+    list-style: none; /* remove bullets */
+    padding: 12px 25px;
+    width: 150px;
+}
+
+.navbar-profile:hover .nav-profile-dropdown {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-profile-dropdown li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.nav-profile-dropdown li:hover {
+    color: tomato;
+}
+
+.nav-profile-dropdown img {
+    width: 20px;
+}
+
+.nav-profile-dropdown hr {
+    height: 1px;
+    background-color: #e2e2e2;
+    border: none;
+    margin: 5px 0px;
 }

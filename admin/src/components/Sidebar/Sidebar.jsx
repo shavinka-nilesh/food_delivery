@@ -35,6 +35,10 @@ const Sidebar = () => {
         </NavLink>
 
         <p className="sidebar-group-title">Marketing</p>
+        <NavLink to='/social-links' className="sidebar-option">
+            <img src={assets.order_icon} alt="" />
+            <p>Social Links</p>
+        </NavLink>
         <NavLink to='/add-banner' className="sidebar-option">
             <img src={assets.add_icon} alt="" />
             <p>Add Banner</p>

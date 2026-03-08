@@ -9,6 +9,7 @@ const StoreContextProvider = (props) => {
     const [food_list, setFoodList] = useState([]);
     const [categories, setCategories] = useState([]);
     const [banners, setBanners] = useState([]);
+    const [socialLinks, setSocialLinks] = useState({ facebook: "", twitter: "", linkedin: "" });
     const [cartItems, setCartItems] = useState({});
     const [token, setToken] = useState("")
     const [searchTerm, setSearchTerm] = useState("");
@@ -69,6 +70,17 @@ const StoreContextProvider = (props) => {
         }
     }
 
+    const fetchSocialLinks = async () => {
+        try {
+            const response = await axios.get(`${url}/api/social/get`);
+            if (response.data.success) {
+                setSocialLinks(response.data.data);
+            }
+        } catch (error) {
+            console.error("Error fetching social links:", error);
+        }
+    }
+
     const loadCartData = async (token) => {
         const response = await axios.post(url + "/api/cart/get", {}, { headers: token });
         setCartItems(response.data.cartData);
@@ -79,6 +91,7 @@ const StoreContextProvider = (props) => {
             await fetchFoodList();
             await fetchCategories();
             await fetchBanners();
+            await fetchSocialLinks();
             if (localStorage.getItem("token")) {
                 setToken(localStorage.getItem("token"))
                 await loadCartData({ token: localStorage.getItem("token") })
@@ -92,6 +105,7 @@ const StoreContextProvider = (props) => {
         food_list,
         categories,
         banners,
+        socialLinks,
         menu_list,
         cartItems,
         addToCart,

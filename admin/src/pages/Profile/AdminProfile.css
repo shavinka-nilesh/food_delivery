@@ -1,0 +1,73 @@
+.admin-profile {
+    width: 70%;
+    margin-left: max(5vw, 25px);
+    margin-top: 50px;
+    color: #686868;
+    font-size: 16px;
+}
+
+.admin-profile form {
+    gap: 20px;
+    background-color: #fcfcfc;
+    border: 1px solid #f0f0f0;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+
+.admin-profile-title p {
+    font-size: 20px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.admin-profile-img-upload img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%; /* Make avatar circular */
+    cursor: pointer;
+    border: 2px dashed #ccc;
+    padding: 5px;
+    transition: all 0.2s ease;
+}
+
+.admin-profile-img-upload img:hover {
+    border-color: tomato;
+}
+
+.admin-profile-email input,
+.admin-profile-password input {
+    width: max(40%, 280px);
+    padding: 10px;
+    border: 1px solid #c9c9c9;
+    border-radius: 4px;
+    outline-color: tomato;
+}
+
+.add-btn {
+    max-width: 150px;
+    border: none;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.add-btn:hover {
+    background-color: tomato;
+}
+
+@media (max-width: 800px) {
+    .admin-profile {
+        width: 100%;
+        margin-left: max(1vw, 15px);
+        margin-top: 30px;
+    }
+    .admin-profile form {
+        padding: 20px;
+    }
+}
