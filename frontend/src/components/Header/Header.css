@@ -1,9 +1,15 @@
 .header{
     height: 34vw;
     margin: 30px auto;
-    background: url('/header_img.png') no-repeat;
-    background-size:contain;
+    background: url('/header_img.png') no-repeat center center;
+    background-size: cover; /* Cover handles dynamic aspects better */
     position: relative;
+    border-radius: 20px; /* Optional but looks good, matching usual food-del styling */
+    transition: background-image 1s ease-in-out; /* Smooth fade for slideshow */
+    overflow: hidden;
+}
+.header.clickable {
+    cursor: pointer;
 }
 .header-contents{
     position: absolute;
