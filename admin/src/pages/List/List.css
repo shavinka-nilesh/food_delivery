@@ -13,13 +13,54 @@
 .list-table-format img{
     width: 50px;
 }
-@media(max-width:600px){
-
-    .list-table-format{
-        grid-template-columns: 1fr 3fr 1fr;
-        gap: 15px;
-    }
+@media(max-width: 768px){
     .list-table-format.title{
         display: none;
+    }
+    .list-table-format {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        position: relative;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        padding: 15px;
+    }
+    .list-table-format img {
+        width: 100%;
+        max-width: 120px;
+        border-radius: 6px;
+        margin-bottom: 5px;
+    }
+    .list-table-format p:nth-child(2)::before {
+        content: "Name: ";
+        font-weight: 600;
+        color: #555;
+    }
+    .list-table-format p:nth-child(3)::before {
+        content: "Category: ";
+        font-weight: 600;
+        color: #555;
+    }
+    .list-table-format p:nth-child(4)::before {
+        content: "Price: ";
+        font-weight: 600;
+        color: #555;
+    }
+    .list-table-format .cursor {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 22px;
+        font-weight: bold;
+        color: tomato;
+        background: #fff0ed;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
     }
 }

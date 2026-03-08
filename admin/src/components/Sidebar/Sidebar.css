@@ -1,38 +1,89 @@
 .sidebar{
-    width: 18%;
+    width: 20%;
     min-height: 100vh;
-    border: 1.5px solid #A9A9A9;
     border-top: 0;
-}
-.sidebar-options{
-    padding-top: 50px;
-    padding-left: 20%;
+    box-shadow: 4px 0 10px rgba(0,0,0,0.03); /* Subtle, modern shadow */
+    background-color: white;
+    font-size: max(1vw, 12px);
     display: flex;
     flex-direction: column;
-    gap: 20px;
 }
+
+.sidebar-options{
+    padding: 30px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Slightly tighter gap between identical items */
+}
+
+.sidebar-group-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #999;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    padding-left: 15px;
+    letter-spacing: 0.5px;
+}
+
+/* First title shouldn't have top margin */
+.sidebar-options .sidebar-group-title:first-child {
+    margin-top: 5px;
+} 
+
 .sidebar-option{
     display: flex;
     align-items: center;
-    gap: 12px;
-    border: 1px solid #A9A9A9;
-    border-right: 0;
-    padding: 8px 10px;
-    border-radius: 3px 0px 0px 3px; 
+    gap: 15px;
+    padding: 12px 15px;
+    border-radius: 8px; /* Professional rounded corners */
     cursor: pointer;
+    color: #555;
+    text-decoration: none;
+    transition: all 0.2s ease;
 }
-.sidebar{
-    font-size: max(1vw,10px );
-}
+
 .sidebar-option img{
-    width: 20px;
+    width: 22px;
+    transition: filter 0.2s ease;
 }
+
+/* Modern Hover State */
+.sidebar-option:hover {
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+/* New Solid Pill Active State */
 .sidebar-option.active {
- background-color: #fff0ed;
- border-color: tomato;
+    background-color: tomato;
+    color: white;
+    font-weight: 500;
+    box-shadow: 0 4px 10px rgba(255, 99, 71, 0.3); /* Glowing orange shadow */
 }
+
+/* The icons in the assets are almost black. 
+   To make them white when active using simple CSS: */
+.sidebar-option.active img {
+    filter: brightness(0) invert(1);
+}
+
 @media (max-width:900px) {
+    .sidebar{
+        width: 80px; /* Collapse nicely */
+    }
+    .sidebar-options {
+        padding: 30px 10px;
+    }
+    .sidebar-group-title {
+        display: none; /* Hide text headers on small screens */
+    }
     .sidebar-option p{
-       display: none;
+        display: none;
+    }
+    .sidebar-option {
+        justify-content: center;
+        padding: 12px 0;
     }
 }

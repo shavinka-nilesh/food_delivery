@@ -1,0 +1,141 @@
+.list-customer {
+    width: 70%;
+    margin-left: max(5vw, 25px);
+    margin-top: 50px;
+    color: #686868;
+    font-size: 16px;
+}
+.list-customer-table {
+    margin-top: 20px;
+}
+.list-customer-table-format {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr 1fr 1fr;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    border: 1px solid #cacaca;
+    font-size: 14px;
+}
+.list-customer-table-format.title {
+    background-color: #f9f9f9;
+}
+.customer-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.edit-btn {
+    color: #4a90e2;
+    cursor: pointer;
+    font-weight: 500;
+}
+.edit-btn:hover {
+    text-decoration: underline;
+}
+.delete-icon {
+    color: tomato;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* Edit Modal Styling */
+.edit-modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.edit-modal {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    width: max(30vw, 300px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+.edit-modal h3 {
+    margin-top: 0;
+    color: #333;
+}
+.edit-modal form {
+    gap: 15px;
+}
+.edit-modal input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+.modal-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+.save-btn {
+    background-color: tomato;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.cancel-btn {
+    background-color: #ccc;
+    color: #333;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Mobile Card Responsiveness (Mirroring other admin tables) */
+@media(max-width: 768px) {
+    .list-customer-table-format.title {
+        display: none;
+    }
+    .list-customer-table-format {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        position: relative;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        padding: 15px;
+    }
+    .list-customer-table-format p:nth-child(1)::before {
+        content: "Name: "; font-weight: 600; color: #555;
+    }
+    .list-customer-table-format p:nth-child(2)::before {
+        content: "Email: "; font-weight: 600; color: #555;
+    }
+    .list-customer-table-format p:nth-child(3)::before {
+        content: "Cart: "; font-weight: 600; color: #555;
+    }
+    
+    /* Reposition actions to top right */
+    .customer-actions {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        gap: 10px;
+    }
+    /* Stylize mobile buttons */
+    .edit-btn {
+        background: #eef5ff;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 13px;
+    }
+    .delete-icon {
+        background: #fff0ed;
+        width: 30px; height: 30px;
+        display: flex; align-items: center; justify-content: center;
+        border-radius: 50%;
+        font-size: 18px;
+        margin-top: -5px; /* Alignment tweak */
+    }
+}
